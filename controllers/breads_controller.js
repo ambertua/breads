@@ -23,6 +23,9 @@ breads.get('/:arrayIndex', (req, res) => {
       res.render('404')
     }
   })
+
+  
+
   
 // CREATE
 breads.post('/', (req, res) => {
@@ -34,6 +37,15 @@ breads.post('/', (req, res) => {
     Bread.push(req.body)
     res.send(Bread)
   })
+
+  // EDIT
+breads.get('/:indexArray/edit', (req, res) => {
+    res.render('edit', {
+      bread: Bread[req.params.indexArray],
+      index: req.params.indexArray
+    })
+})
+
   
 // UPDATE
 breads.put('/:arrayIndex', (req, res) => {
@@ -45,7 +57,7 @@ breads.put('/:arrayIndex', (req, res) => {
     Bread[req.params.arrayIndex] = req.body
     res.redirect(`/breads/${req.params.arrayIndex}`)
   })
-  
+
   // SHOW
 breads.get('/:arrayIndex', (req, res) => {
     if (Bread[req.params.arrayIndex]) {
